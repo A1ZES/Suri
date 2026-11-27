@@ -43,7 +43,7 @@ Kindle, Kobo and reMarkable screen sizes are already in [`devices.toml`](crates/
 
 ## Install
 
-Prebuilt installers for Windows, macOS and Linux are coming soon on the [Releases](../../releases) page.
+Prebuilt installers for Windows, macOS and Linux are coming soon.
 
 ### Build from source
 
