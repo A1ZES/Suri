@@ -1,0 +1,16 @@
+[workspace]
+resolver = "2"
+members = ["crates/core", "crates/cli"]
+
+[workspace.package]
+edition = "2021"
+license = "MIT"
+
+[workspace.dependencies]
+anyhow = "1"
+image = { version = "0.25", default-features = false, features = ["jpeg", "png", "webp"] }
+serde = { version = "1", features = ["derive"] }
+toml = "0.8"
+rayon = "1"
+zip = { version = "2", default-features = false, features = ["deflate"] }
+clap = { version = "4", features = ["derive"] }

@@ -1,0 +1,11 @@
+/target
+/samples
+/.superpowers
+*.xtc
+*.xtch
+*.epub
+*.cbz
+*.cbr
+
+# internal planning notes (local only)
+/docs/superpowers
