@@ -6,7 +6,7 @@ use xtc_core::pack::{to_gray, Depth};
 use xtc_core::settings::{devices, load_preset, Settings};
 
 #[derive(Parser)]
-#[command(name = "xtc", about = "Manga to XTC/XTCH converter for Xteink e-readers", version)]
+#[command(name = "suri", about = "Suri (摺り): press manga and comics into XTC/XTCH files for Xteink e-readers", version)]
 struct Cli {
     #[command(subcommand)]
     cmd: Cmd,

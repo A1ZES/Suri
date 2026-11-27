@@ -1,5 +1,6 @@
 [package]
-name = "xtc"
+name = "suri-cli"
+description = "Command-line interface for Suri"
 version = "0.1.0"
 edition.workspace = true
 license.workspace = true
@@ -9,3 +10,7 @@ anyhow.workspace = true
 clap.workspace = true
 image.workspace = true
 xtc-core = { path = "../core" }
+
+[[bin]]
+name = "suri"
+path = "src/main.rs"

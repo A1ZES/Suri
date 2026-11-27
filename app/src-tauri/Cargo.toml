@@ -1,13 +1,13 @@
 [package]
-name = "xtc-app"
+name = "suri-app"
 version = "0.1.0"
-description = "Manga to XTC/XTCH converter for Xteink e-readers"
+description = "Suri: press manga and comics into e-reader-ready XTC files"
 edition.workspace = true
 license.workspace = true
 
 [lib]
 # `_lib` suffix avoids a Windows name clash between the lib and bin (cargo#8519)
-name = "xtc_app_lib"
+name = "suri_app_lib"
 crate-type = ["staticlib", "cdylib", "rlib"]
 
 [build-dependencies]

@@ -10,8 +10,8 @@ type Item = { path: string; info?: ScanInfo; state: "ready" | "working" | "done"
 type ConvertResult = { out: string; pages: number; skipped: string[] };
 
 const $ = <T extends HTMLElement>(id: string) => document.getElementById(id) as T;
-const STORE = "xtc-converter:settings";
-const OUT_STORE = "xtc-converter:out-dir";
+const STORE = "suri:settings";
+const OUT_STORE = "suri:out-dir";
 
 function remember(key: string, value: string) {
   try {
