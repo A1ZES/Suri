@@ -18,6 +18,17 @@ pub struct Levels {
 
 pub const HEADER: usize = 22;
 
+/// Levels → 8-bit gray for display (preview, dump, compare).
+pub fn to_gray(l: &Levels) -> image::GrayImage {
+    let lut: &[u8] = match l.depth {
+        Depth::One => &[0, 255],
+        Depth::Two => &[0, 85, 170, 255],
+    };
+    image::GrayImage::from_fn(l.width as u32, l.height as u32, |x, y| {
+        image::Luma([lut[l.px[(y * l.width as u32 + x) as usize] as usize]])
+    })
+}
+
 /// Level (0 = black .. 3 = white) <-> XTH code (0 white, 1 dark, 2 light, 3 black). Self-inverse.
 const XTH_CODE: [u8; 4] = [3, 1, 2, 0];
 

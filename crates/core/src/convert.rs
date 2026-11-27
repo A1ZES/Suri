@@ -4,7 +4,7 @@ use crate::container::{Chapter, Meta, XtcWriter};
 use crate::dither::quantize;
 use crate::input::{discover, read_bytes, Source};
 use crate::layout::layout;
-use crate::pack::{pack, page_size};
+use crate::pack::{pack, page_size, Depth, Levels};
 use crate::settings::Settings;
 use crate::tone::{crop, decode_gray, tone};
 use rayon::prelude::*;
@@ -26,14 +26,26 @@ fn describe(src: &Source) -> String {
     }
 }
 
-/// One source image → its packed output pages.
-fn process(src: &Source, is_cover: bool, s: &Settings) -> anyhow::Result<Vec<Vec<u8>>> {
+/// One source image → its output pages, exactly as the e-reader will show them.
+pub fn render(src: &Source, is_cover: bool, s: &Settings) -> anyhow::Result<Vec<Levels>> {
     let mut img = crop(&decode_gray(&read_bytes(src)?)?, s);
     tone(&mut img, s);
     Ok(layout(img, is_cover, s)
         .iter()
-        .map(|p| pack(&quantize(p, s.depth, s.dither, s.dither_strength)))
+        .map(|p| quantize(p, s.depth, s.dither, s.dither_strength.clamp(0.0, 1.0)))
         .collect())
+}
+
+fn process(src: &Source, is_cover: bool, s: &Settings) -> anyhow::Result<Vec<Vec<u8>>> {
+    Ok(render(src, is_cover, s)?.iter().map(pack).collect())
+}
+
+/// `<parent>/<folder name or file stem>.xtc|.xtch` (no `with_extension`: "Vol. 2" must stay intact).
+pub fn default_output(input: &Path, depth: Depth) -> PathBuf {
+    let ext = if depth == Depth::One { "xtc" } else { "xtch" };
+    let name = if input.is_file() { input.file_stem() } else { input.file_name() };
+    let name = name.map(|n| n.to_string_lossy().into_owned()).unwrap_or_else(|| "output".into());
+    input.parent().unwrap_or(Path::new(".")).join(format!("{name}.{ext}"))
 }
 
 fn sibling(out: &Path, suffix: &str) -> PathBuf {
@@ -181,6 +193,29 @@ mod tests {
         let r = convert(&d, &out, &Settings::default(), &|_, _| {}).unwrap();
         assert_eq!(r.pages_written, 8);
         assert!(r.skipped.iter().any(|(src, _)| src.contains("Chapter 3.cbz")));
+    }
+
+    #[test]
+    fn default_output_keeps_dots_in_folder_names() {
+        let p = Path::new(r"C:\Mangas\Vol. 2");
+        assert_eq!(default_output(p, crate::pack::Depth::Two), Path::new(r"C:\Mangas\Vol. 2.xtch"));
+    }
+
+    #[test]
+    fn default_output_for_cbz_uses_stem() {
+        let d = tmp_dir("defout");
+        let f = d.join("Vol 1.cbz");
+        std::fs::write(&f, b"").unwrap();
+        assert_eq!(default_output(&f, crate::pack::Depth::One), d.join("Vol 1.xtc"));
+    }
+
+    #[test]
+    fn render_returns_screen_sized_levels() {
+        let d = fixture("render");
+        let src = Source::File(d.join("Chapter 2").join("2.png")); // wide
+        let pages = render(&src, false, &Settings::default()).unwrap();
+        assert_eq!(pages.len(), 3);
+        assert!(pages.iter().all(|p| (p.width, p.height) == (480, 800)));
     }
 
     #[test]

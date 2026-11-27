@@ -1,8 +1,8 @@
 use clap::{Parser, Subcommand};
 use std::path::PathBuf;
 use xtc_core::container::{read_page, read_xtc};
-use xtc_core::convert::convert;
-use xtc_core::pack::{Depth, Levels};
+use xtc_core::convert::{convert, default_output};
+use xtc_core::pack::{to_gray, Depth};
 use xtc_core::settings::{devices, load_preset, Settings};
 
 #[derive(Parser)]
@@ -53,16 +53,6 @@ enum Cmd {
     },
 }
 
-fn to_gray(l: &Levels) -> image::GrayImage {
-    let lut: &[u8] = match l.depth {
-        Depth::One => &[0, 255],
-        Depth::Two => &[0, 85, 170, 255],
-    };
-    image::GrayImage::from_fn(l.width as u32, l.height as u32, |x, y| {
-        image::Luma([lut[l.px[(y * l.width as u32 + x) as usize] as usize]])
-    })
-}
-
 fn main() -> anyhow::Result<()> {
     match Cli::parse().cmd {
         Cmd::Info { file } => {
@@ -95,12 +85,7 @@ fn main() -> anyhow::Result<()> {
             if s.depth == Depth::One && !has_preset {
                 s.dither = xtc_core::settings::Dither::Atkinson;
             }
-            let out = out.unwrap_or_else(|| {
-                let ext = if s.depth == Depth::One { "xtc" } else { "xtch" };
-                let name = if input.is_dir() { input.file_name() } else { input.file_stem() };
-                let name = name.map(|n| n.to_string_lossy().into_owned()).unwrap_or_else(|| "output".into());
-                input.parent().unwrap_or(std::path::Path::new(".")).join(format!("{name}.{ext}"))
-            });
+            let out = out.unwrap_or_else(|| default_output(&input, s.depth));
             let t = std::time::Instant::now();
             let r = convert(&input, &out, &s, &|i, n| eprint!("\rimage {i}/{n}"))?;
             eprintln!();
