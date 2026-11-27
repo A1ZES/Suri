@@ -92,17 +92,6 @@ folder / CBZ ─▶ decode ─▶ crop margins ─▶ tone (gamma, contrast)
 
 Run the tests with `cargo test --workspace`.
 
-## Credits
-
-Suri stands on the work of these projects:
-
-- [Kindle Comic Converter (KCC)](https://github.com/ciromattia/kcc): the image-preparation ideas and the e-reader device list (ISC license).
-- [x4converter](https://x4converter.rho.sh/): the reference for XTC output quality.
-- [xtcjs](https://xtcjs.app/) and cbz2xtc: inspiration for the conversion options.
-- [CrossPoint Reader](https://github.com/crosspoint-reader/crosspoint-reader): its XTC reader is the format reference Suri writes against.
-
-Suri is not affiliated with Xteink or any of the projects above.
-
 ## License
 
 [MIT](LICENSE). Free to use, modify and share.
