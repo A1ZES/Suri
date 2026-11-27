@@ -18,23 +18,16 @@ Right now Suri focuses on XTC, the format used by Xteink readers. That's only th
 
 ## Why
 
-Getting manga onto an Xteink X3 or X4 used to take three tools: download the chapters, convert them in KCC with a custom screen size, export an EPUB, upload that EPUB to a browser converter (which chokes on big files), copy the result to the device, and start over if it looks wrong.
-
-Suri does all of that in one step, on your own computer:
-
-1. Drop in a manga folder or CBZ.
-2. Pick your device.
-3. Press **Convert**.
+Converting manga for an Xteink reader used to take three tools and a lot of retries. With Suri, you drop in a folder, pick your device, and press **Convert**.
 
 ## Features
 
-- **One window, no command line.** Queue several series, see a live preview of every page exactly as the e-reader will show it, and convert.
-- **Fast and offline.** Pages are processed in parallel in native Rust. A 2,300-page series takes about 40 seconds, with no upload and no file-size limit.
-- **Whole series at once.** Point it at a folder of chapters (for example, from a manga downloader) and you get one file with a proper chapter list.
-- **Built for e-ink.** Automatic margin cropping, contrast, gamma, and a choice of dithering methods (Floyd–Steinberg, Atkinson, Sierra Lite, ordered, or none).
-- **Double-page spreads your way.** Split them, rotate them, do both, or cut overlapping thirds, in manga (right-to-left) or comic (left-to-right) order.
-- **1-bit XTC or 2-bit XTCH output.** The default preset matches the look of the popular x4converter output.
-- **Presets.** Every option can be changed; save your setup and share it.
+- **Live preview:** see each page exactly as the e-reader will show it.
+- **Fast and offline:** a 2,300-page series converts in about 40 seconds, with no upload.
+- **Whole series:** a folder of chapters becomes one book with a chapter list.
+- **Made for e-ink:** auto-crop, contrast, gamma and five dithering methods.
+- **Spreads:** split, rotate or both, in manga or comic reading order.
+- **Fully customizable:** change any option and save it as a preset.
 
 ## Supported devices
 
@@ -95,3 +88,5 @@ Run the tests with `cargo test --workspace`.
 ## License
 
 [MIT](LICENSE). Free to use, modify and share.
+
+Suri is an independent project, not affiliated with Xteink.
