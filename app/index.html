@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/src/styles.css" />
+    <title>Suri</title>
+    <script type="module" src="/src/main.ts" defer></script>
+  </head>
+  <body>
+    <main class="app">
+      <section class="controls">
+        <div class="toolbar">
+          <button id="add-folder">Add folder</button>
+          <button id="add-cbz">Add CBZ</button>
+          <button id="clear" class="quiet">Clear</button>
+        </div>
+
+        <ul id="queue" class="queue" aria-label="Conversion queue">
+          <li class="empty">Drop manga folders or CBZ files here</li>
+        </ul>
+
+        <div class="grid">
+          <label for="device">Device</label>
+          <select id="device"></select>
+
+          <label for="preset">Preset</label>
+          <div class="row">
+            <select id="preset" title="A saved set of all settings"><option value="builtin">Default (x4converter look)</option></select>
+            <button id="load-preset" class="quiet" title="Load settings from a preset file">Load…</button>
+            <button id="save-preset" class="quiet" title="Save the current settings as a preset file">Save…</button>
+          </div>
+
+          <label for="out-dir">Save to</label>
+          <div class="row">
+            <select id="out-dir"><option value="">Next to the source</option></select>
+            <button id="choose-out" class="quiet">Choose folder…</button>
+          </div>
+
+          <span class="label">Output</span>
+          <div class="row" role="radiogroup" aria-label="Output">
+            <label class="choice"><input type="radio" name="depth" value="One" /> 1-bit XTC</label>
+            <label class="choice"><input type="radio" name="depth" value="Two" /> 2-bit XTCH</label>
+          </div>
+
+          <label for="spread">Spreads</label>
+          <select id="spread" data-key="spread">
+            <option value="Both">Rotate + split</option>
+            <option value="Split">Split in half</option>
+            <option value="Rotate">Rotate</option>
+            <option value="Thirds">Overlapping thirds</option>
+            <option value="None">Keep whole</option>
+          </select>
+
+          <label for="rtl">Direction</label>
+          <select id="rtl" data-key="rtl" data-type="bool">
+            <option value="true">Right to left (manga)</option>
+            <option value="false">Left to right (comics)</option>
+          </select>
+        </div>
+
+        <details class="advanced">
+          <summary>Advanced</summary>
+          <fieldset>
+            <legend>Layout</legend>
+            <label class="check"><input type="checkbox" data-key="first_page_cover" /> First page is a cover</label>
+            <label class="check"><input type="checkbox" data-key="keep_cover_portrait" /> Keep cover portrait</label>
+            <label class="check"><input type="checkbox" data-key="cover_fill" /> Cover fills the screen</label>
+            <label class="check"><input type="checkbox" data-key="rotate_right" /> Rotate spreads clockwise</label>
+            <label class="check"><input type="checkbox" data-key="stretch" /> Stretch to fill the screen</label>
+            <label class="check"><input type="checkbox" data-key="landscape" /> Landscape reading</label>
+            <label class="check"><input type="checkbox" data-key="flip_landscape_cw" /> Flip landscape clockwise</label>
+            <div class="grid">
+              <label for="overview">Page overview</label>
+              <select id="overview" data-key="overview">
+                <option value="None">None</option>
+                <option value="Portrait">Portrait</option>
+                <option value="Landscape">Landscape</option>
+              </select>
+            </div>
+          </fieldset>
+          <fieldset>
+            <legend>Crop</legend>
+            <label class="check"><input type="checkbox" data-key="auto_crop" /> Auto-crop margins</label>
+            <div class="grid">
+              <label for="crop_power">Cropping power</label>
+              <input id="crop_power" type="range" min="0" max="5" step="0.1" data-key="crop_power" data-type="num" />
+              <label for="preserve_margin_pct">Keep margin %</label>
+              <input id="preserve_margin_pct" type="number" min="0" max="20" step="0.5" data-key="preserve_margin_pct" data-type="num" />
+              <label for="margin_crop_h_pct">Cut sides %</label>
+              <input id="margin_crop_h_pct" type="number" min="0" max="45" step="0.5" data-key="margin_crop_h_pct" data-type="num" />
+              <label for="margin_crop_v_pct">Cut top/bottom %</label>
+              <input id="margin_crop_v_pct" type="number" min="0" max="45" step="0.5" data-key="margin_crop_v_pct" data-type="num" />
+            </div>
+          </fieldset>
+          <fieldset>
+            <legend>Tone</legend>
+            <div class="grid">
+              <label for="contrast">Contrast</label>
+              <select id="contrast" data-key="contrast">
+                <option value="None">Off</option>
+                <option value="Light">Auto (KCC)</option>
+                <option value="Medium">Medium</option>
+                <option value="Strong">Strong</option>
+                <option value="Maximum">Maximum</option>
+              </select>
+              <label for="gamma">Gamma <output id="gamma-out"></output></label>
+              <div class="row">
+                <label class="check"><input type="checkbox" id="gamma-auto" /> Auto</label>
+                <input id="gamma" type="range" min="0.5" max="2.5" step="0.05" />
+              </div>
+            </div>
+            <label class="check"><input type="checkbox" data-key="extreme_black" /> Deeper blacks</label>
+            <label class="check"><input type="checkbox" data-key="invert" /> Dark mode (invert)</label>
+          </fieldset>
+          <fieldset>
+            <legend>Dithering</legend>
+            <div class="grid">
+              <label for="dither">Method</label>
+              <select id="dither" data-key="dither">
+                <option value="None">None</option>
+                <option value="FloydSteinberg">Floyd–Steinberg</option>
+                <option value="Atkinson">Atkinson</option>
+                <option value="SierraLite">Sierra Lite</option>
+                <option value="Ordered">Ordered</option>
+              </select>
+              <label for="dither_strength">Strength</label>
+              <input id="dither_strength" type="range" min="0" max="1" step="0.05" data-key="dither_strength" data-type="num" />
+            </div>
+          </fieldset>
+          <fieldset>
+            <legend>Book info</legend>
+            <div class="grid">
+              <label for="title">Title</label>
+              <input id="title" type="text" placeholder="Folder name" />
+              <label for="author">Author</label>
+              <input id="author" type="text" data-key="author" />
+            </div>
+          </fieldset>
+        </details>
+
+        <div class="convert">
+          <button id="convert" class="primary">Convert</button>
+          <progress id="progress" max="1" value="0" hidden></progress>
+          <p id="status" class="status" role="status"></p>
+        </div>
+      </section>
+
+      <section class="preview" aria-label="Preview">
+        <div id="pages" class="pages"><p class="hint">Add a manga to see how its pages will look on the device.</p></div>
+        <nav class="pager">
+          <button id="prev" aria-label="Previous image">◀</button>
+          <span id="page-label">–</span>
+          <button id="next" aria-label="Next image">▶</button>
+        </nav>
+      </section>
+    </main>
+  </body>
+</html>

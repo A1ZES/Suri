@@ -1,0 +1,48 @@
+# Device profiles. Add yours with a one-line PR.
+# xtc = true: XTC/XTCH output supported. Other devices are listed for a future CBZ/EPUB output.
+# Kindle/Kobo/reMarkable resolutions from KCC (kindlecomicconverter/image.py).
+
+devices = [
+  { id = "x4", name = "Xteink X4 / X4 Pro", width = 480, height = 800, xtc = true },
+  { id = "x3", name = "Xteink X3", width = 528, height = 792, xtc = true },
+  { id = "sticky", name = "reTerminal Sticky", width = 480, height = 800, xtc = true },
+
+  { id = "K1", name = "Kindle 1", width = 600, height = 670, xtc = false },
+  { id = "K2", name = "Kindle 2", width = 600, height = 670, xtc = false },
+  { id = "KDX", name = "Kindle DX/DXG", width = 824, height = 1000, xtc = false },
+  { id = "K34", name = "Kindle Keyboard/Touch", width = 600, height = 800, xtc = false },
+  { id = "K57", name = "Kindle 5/7", width = 600, height = 800, xtc = false },
+  { id = "KPW", name = "Kindle Paperwhite 1/2", width = 758, height = 1024, xtc = false },
+  { id = "KV", name = "Kindle Voyage", width = 1072, height = 1448, xtc = false },
+  { id = "KPW34", name = "Kindle Paperwhite 3/4/Oasis", width = 1072, height = 1448, xtc = false },
+  { id = "K810", name = "Kindle 8/10", width = 600, height = 800, xtc = false },
+  { id = "KO", name = "Kindle Oasis 2/3", width = 1264, height = 1680, xtc = false },
+  { id = "K11", name = "Kindle 11/2026", width = 1072, height = 1448, xtc = false },
+  { id = "KPW5", name = "Kindle Paperwhite 5/Signature Edition", width = 1236, height = 1648, xtc = false },
+  { id = "KPW6", name = "Kindle Paperwhite 6/2026", width = 1272, height = 1696, xtc = false },
+  { id = "KS", name = "Kindle Scribe 1/2", width = 1860, height = 2480, xtc = false },
+  { id = "KCS", name = "Kindle Colorsoft", width = 1272, height = 1696, xtc = false },
+  { id = "KS3", name = "Kindle Scribe 3", width = 1986, height = 2648, xtc = false },
+  { id = "KSCS", name = "Kindle Scribe Colorsoft", width = 1986, height = 2648, xtc = false },
+
+  { id = "KoMT", name = "Kobo Mini/Touch", width = 600, height = 800, xtc = false },
+  { id = "KoG", name = "Kobo Glo", width = 768, height = 1024, xtc = false },
+  { id = "KoGHD", name = "Kobo Glo HD", width = 1072, height = 1448, xtc = false },
+  { id = "KoA", name = "Kobo Aura", width = 758, height = 1024, xtc = false },
+  { id = "KoAHD", name = "Kobo Aura HD", width = 1080, height = 1440, xtc = false },
+  { id = "KoAH2O", name = "Kobo Aura H2O", width = 1080, height = 1430, xtc = false },
+  { id = "KoAO", name = "Kobo Aura ONE", width = 1404, height = 1872, xtc = false },
+  { id = "KoN", name = "Kobo Nia", width = 758, height = 1024, xtc = false },
+  { id = "KoC", name = "Kobo Clara HD/2E/BW", width = 1072, height = 1448, xtc = false },
+  { id = "KoCC", name = "Kobo Clara Colour", width = 1072, height = 1448, xtc = false },
+  { id = "KoL", name = "Kobo Libra H2O/Libra 2", width = 1264, height = 1680, xtc = false },
+  { id = "KoLC", name = "Kobo Libra Colour", width = 1264, height = 1680, xtc = false },
+  { id = "KoF", name = "Kobo Forma", width = 1440, height = 1920, xtc = false },
+  { id = "KoS", name = "Kobo Sage", width = 1440, height = 1920, xtc = false },
+  { id = "KoE", name = "Kobo Elipsa", width = 1404, height = 1872, xtc = false },
+
+  { id = "Rmk1", name = "reMarkable 1", width = 1404, height = 1872, xtc = false },
+  { id = "Rmk2", name = "reMarkable 2", width = 1404, height = 1872, xtc = false },
+  { id = "RmkPP", name = "reMarkable Paper Pro", width = 1620, height = 2160, xtc = false },
+  { id = "RmkPPMove", name = "reMarkable Paper Pro Move", width = 954, height = 1696, xtc = false },
+]

@@ -1,0 +1,22 @@
+[package]
+name = "suri-app"
+version = "0.1.0"
+description = "Suri: press manga and comics into e-reader-ready XTC files"
+edition.workspace = true
+license.workspace = true
+
+[lib]
+# `_lib` suffix avoids a Windows name clash between the lib and bin (cargo#8519)
+name = "suri_app_lib"
+crate-type = ["staticlib", "cdylib", "rlib"]
+
+[build-dependencies]
+tauri-build = { version = "2", features = [] }
+
+[dependencies]
+tauri = { version = "2", features = [] }
+tauri-plugin-dialog = "2"
+serde = { version = "1", features = ["derive"] }
+anyhow.workspace = true
+image.workspace = true
+xtc-core = { path = "../../crates/core" }

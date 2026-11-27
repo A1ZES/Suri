@@ -1,0 +1,13 @@
+/target
+node_modules/
+/app/dist
+/samples
+/.superpowers
+*.xtc
+*.xtch
+*.epub
+*.cbz
+*.cbr
+
+# internal planning notes (local only)
+/docs/superpowers
