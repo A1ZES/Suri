@@ -4,9 +4,8 @@
 
 **Press your manga and comics into e-reader-ready XTC files.**
 
-[![Latest version](https://img.shields.io/github/v/release/A1ZES/Suri?label=version&color=e8e3d5&labelColor=16171a)](https://github.com/A1ZES/Suri/releases/latest)
-[![Stars](https://img.shields.io/github/stars/A1ZES/Suri?label=stars&color=e8e3d5&labelColor=16171a)](https://github.com/A1ZES/Suri/stargazers)
-[![Forks](https://img.shields.io/github/forks/A1ZES/Suri?label=forks&color=e8e3d5&labelColor=16171a)](https://github.com/A1ZES/Suri/forks)
+[![Downloads](https://img.shields.io/github/downloads/A1ZES/Suri/total?logo=github&label=downloads&color=8fbf8f&labelColor=16171a)](https://github.com/A1ZES/Suri/releases/latest)
+[![Stars](https://img.shields.io/github/stars/A1ZES/Suri?logo=github&label=stars&color=e8e3d5&labelColor=16171a)](https://github.com/A1ZES/Suri/stargazers)
 
 <img src="docs/screenshot.png" alt="Suri showing a live preview of a manga page as it will look on an Xteink X4" width="820">
 
