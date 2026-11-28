@@ -119,6 +119,8 @@ fn save_preset(path: PathBuf, settings: Settings) -> Res<()> {
 pub fn run() {
     tauri::Builder::default()
         .plugin(tauri_plugin_dialog::init())
+        .plugin(tauri_plugin_updater::Builder::new().build())
+        .plugin(tauri_plugin_process::init())
         .invoke_handler(tauri::generate_handler![devices, default_settings, scan, preview, convert, load_preset, save_preset])
         .run(tauri::generate_context!())
         .expect("error while running the app");

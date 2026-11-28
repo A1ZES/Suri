@@ -1,7 +1,10 @@
+/// <reference types="vite/client" />
 import { invoke } from "@tauri-apps/api/core";
 import { listen } from "@tauri-apps/api/event";
 import { getCurrentWebview } from "@tauri-apps/api/webview";
-import { open, save } from "@tauri-apps/plugin-dialog";
+import { ask, open, save } from "@tauri-apps/plugin-dialog";
+import { check } from "@tauri-apps/plugin-updater";
+import { relaunch } from "@tauri-apps/plugin-process";
 
 type Settings = Record<string, unknown> & { depth: "One" | "Two"; width: number; height: number; gamma: number | null; title: string | null };
 type Device = { id: string; name: string; width: number; height: number };
@@ -305,6 +308,22 @@ async function savePreset() {
   }
 }
 
+// ---------- updates ----------
+
+async function checkForUpdate() {
+  // Offline, dev builds or a missing latest.json just mean "no update": never bother the user.
+  const update = await check().catch(() => null);
+  if (!update) return;
+  if (!(await ask(`Suri ${update.version} is available. Install it now?`, { title: "Update available", okLabel: "Update", cancelLabel: "Later" }))) return;
+  status(`Downloading Suri ${update.version}…`);
+  try {
+    await update.downloadAndInstall();
+    await relaunch();
+  } catch (e) {
+    status(`Update failed: ${e}`, true);
+  }
+}
+
 // ---------- startup ----------
 
 window.addEventListener("DOMContentLoaded", async () => {
@@ -371,4 +390,5 @@ window.addEventListener("DOMContentLoaded", async () => {
     else q.classList.remove("dragging");
     if (e.payload.type === "drop" && !busy) add(e.payload.paths);
   });
+  if (!import.meta.env.DEV) checkForUpdate();
 });

@@ -16,7 +16,10 @@ tauri-build = { version = "2", features = [] }
 [dependencies]
 tauri = { version = "2", features = [] }
 tauri-plugin-dialog = "2"
+tauri-plugin-updater = "2"
+tauri-plugin-process = "2"
 serde = { version = "1", features = ["derive"] }
+serde_json = "1" # tauri::generate_context! needs it once plugins have config
 anyhow.workspace = true
 image.workspace = true
 xtc-core = { path = "../../crates/core" }
