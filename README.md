@@ -1,5 +1,7 @@
 <div align="center">
 
+<img src="docs/logo.svg" alt="" width="112">
+
 # Suri (摺り)
 
 **Press your manga and comics into e-reader-ready XTC files.**
@@ -32,6 +34,12 @@ Install it once and Suri **updates itself**: when a new version is out, it asks 
 
 > [!TIP]
 > Windows may say *"Windows protected your PC"* because the app isn't signed yet. Click **More info → Run anyway**.
+
+## Quick start
+
+1. **Add your manga.** Drop a folder (or a CBZ) onto Suri. A folder of chapter folders becomes one book.
+2. **Pick your device** and click **Convert**. The live preview shows how each page will look.
+3. **Copy the file to your reader.** Put the `.xtch` (or `.xtc`) file on the reader's microSD card, or send it with the reader's Wi-Fi file transfer.
 
 ## About this project
 
@@ -106,6 +114,15 @@ folder / CBZ ─▶ decode ─▶ crop margins ─▶ tone (gamma, contrast)
 Run the tests with `cargo test --workspace`.
 
 </details>
+
+## Roadmap
+
+- [x] XTC (1-bit) and XTCH (2-bit) output for Xteink readers
+- [x] Live preview, presets and whole-series conversion
+- [x] Installers for Windows, macOS and Linux, with auto-update
+- [ ] Choose which chapters to convert
+- [ ] Send books straight to the device over Wi-Fi
+- [ ] CBZ and EPUB output for Kindle, Kobo and reMarkable
 
 ## License
 

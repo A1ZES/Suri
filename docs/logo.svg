@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="1024" height="1024">
+  <!-- Suri: a manga page in the four e-ink grays, pressed with a red seal. -->
+  <rect width="1024" height="1024" rx="224" fill="#16171a"/>
+  <g transform="rotate(-6 472 488)">
+    <rect x="232" y="168" width="480" height="640" rx="28" fill="#e8e3d5"/>
+    <rect x="276" y="212" width="392" height="214" rx="10" fill="#16171a"/>
+    <rect x="276" y="456" width="178" height="308" rx="10" fill="#5e5d59"/>
+    <rect x="484" y="456" width="184" height="308" rx="10" fill="#a8a59b"/>
+  </g>
+  <g transform="rotate(8 742 752)">
+    <rect x="602" y="612" width="280" height="280" rx="40" fill="#d9584a"/>
+    <rect x="648" y="658" width="188" height="188" rx="18" fill="none" stroke="#e8e3d5" stroke-width="22"/>
+    <rect x="700" y="710" width="84" height="84" rx="8" fill="#e8e3d5"/>
+  </g>
+</svg>
