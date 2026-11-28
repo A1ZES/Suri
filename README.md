@@ -4,10 +4,9 @@
 
 **Press your manga and comics into e-reader-ready XTC files.**
 
-[![Download](https://img.shields.io/github/v/release/A1ZES/Suri?label=download&color=e8e3d5&labelColor=16171a)](https://github.com/A1ZES/Suri/releases/latest)
-![Platforms](https://img.shields.io/badge/Windows%20%C2%B7%20macOS%20%C2%B7%20Linux-16171a)
-![Status](https://img.shields.io/badge/status-alpha-e07a6a?labelColor=16171a)
-[![License: MIT](https://img.shields.io/badge/license-MIT-8fbf8f?labelColor=16171a)](LICENSE)
+[![Latest version](https://img.shields.io/github/v/release/A1ZES/Suri?label=version&color=e8e3d5&labelColor=16171a)](https://github.com/A1ZES/Suri/releases/latest)
+[![Stars](https://img.shields.io/github/stars/A1ZES/Suri?label=stars&color=e8e3d5&labelColor=16171a)](https://github.com/A1ZES/Suri/stargazers)
+[![Forks](https://img.shields.io/github/forks/A1ZES/Suri?label=forks&color=e8e3d5&labelColor=16171a)](https://github.com/A1ZES/Suri/forks)
 
 <img src="docs/screenshot.png" alt="Suri showing a live preview of a manga page as it will look on an Xteink X4" width="820">
 
@@ -15,12 +14,12 @@
 
 </div>
 
-*Suri* is the step in Japanese woodblock printing where paper is pressed onto the inked block. Suri does the same for your manga. It takes a folder of pages and turns it into a file that looks sharp on a small e-ink screen.
-
 > [!NOTE]
 > **Suri is in alpha.** It's very new and changing fast. Today it outputs XTC/XTCH for Xteink readers only; more formats and devices are on the way.
 
 ## Download
+
+[![Suri downloads](https://img.shields.io/github/downloads/A1ZES/Suri/total?logo=github&label=Suri&color=brightgreen)](https://github.com/A1ZES/Suri/releases/latest)
 
 **[Get the latest version →](https://github.com/A1ZES/Suri/releases/latest)**
 
